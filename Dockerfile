@@ -14,4 +14,4 @@ RUN pip install -r requirements.txt
 COPY . .
 
 # Specify the command to run your application
-CMD ["python", "manage.py", "runserver"]
+CMD ["gunicorn", "marketapp.wsgi:application", "--bind",]
