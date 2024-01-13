@@ -16,6 +16,7 @@ class ProductVariantAdmin(admin.ModelAdmin):
 
 class ProductAdmin(admin.ModelAdmin):
     inlines = [ProductVariantInline ]
+    search_fields = ['category__category_name', 'product_name']
 
 class CartItemVariantInline(admin.TabularInline):
     model = CartItem
@@ -35,6 +36,7 @@ class CustomerAddressInline(admin.TabularInline):
 
 class CustomerAdmin(admin.ModelAdmin):
     inlines = [CustomerAddressInline]
+    search_fields = [ 'first_name', 'last_name', 'phone_number']
 
 class OrderDetailsInline(admin.TabularInline):
     model = OrderDetails
@@ -42,10 +44,18 @@ class OrderDetailsInline(admin.TabularInline):
 
 class OrderAdmin(admin.ModelAdmin):
     inlines = [OrderDetailsInline]
+    search_fields = ['customer__first_name']
 
-    
+class DeliveryAdmin(admin.ModelAdmin):
+    search_fields = ['order__customer__first_name', 'order__customer__last_name']
 
-admin.site.register(CustomUser)
+class CustomUserAdmin(admin.ModelAdmin):
+    search_fields = ['first_name', 'last_name', 'username']
+
+
+
+
+admin.site.register(CustomUser, CustomUserAdmin)
 admin.site.register(Customer, CustomerAdmin)
 admin.site.register(CustomerAddress)
 admin.site.register(CustomerLocation)
@@ -54,7 +64,7 @@ admin.site.register(ProductVariant, ProductVariantAdmin)
 admin.site.register(ProductPricing)
 admin.site.register(Order, OrderAdmin)
 admin.site.register(OrderDetails)
-admin.site.register(Delivery)
+admin.site.register(Delivery, DeliveryAdmin)
 admin.site.register(Cart, CartAdmin)
 admin.site.register(CartItem)
 admin.site.register(Category)
