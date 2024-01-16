@@ -97,12 +97,11 @@ WSGI_APPLICATION = 'marketapp.wsgi.application'
 DATABASES = {
   'default': {
     'ENGINE': 'django.db.backends.postgresql',
-    'NAME': 'goodlifebazar database',
-    'USER': 'aswanthanu777',
-    'PASSWORD': 'Xu6ZU0ETBOWL',
-    'HOST': 'ep-sparkling-moon-a1wya1rx.ap-southeast-1.aws.neon.tech',
+    'NAME': 'goodlifedatabase',
+    'USER': 'goodlife',
+    'PASSWORD': 'goodlife@123',
+    'HOST': 'localhost',
     'PORT': '5432',
-    'OPTIONS': {'sslmode': 'require'},
   }
 }
 
